@@ -1,16 +1,505 @@
 ---
+import { Github, Linkedin } from '@lucide/astro';
+import MainLayout from "../layouts/main.astro";
 
+const workExperience = [
+  {
+    year: "2024",
+    role: "Senior Fullstack Engineer",
+    company: "Shopify",
+    description:
+      "Leading development of e-commerce platform features and payment infrastructure.",
+    tech: ["React", "Ruby on Rails", "GraphQL"],
+    image: "/modern-e-commerce-dashboard-interface-with-payment.jpg",
+  },
+  {
+    year: "2023",
+    role: "Fullstack Engineer",
+    company: "Slack",
+    description:
+      "Built real-time messaging features and collaboration tools for enterprise clients.",
+    tech: ["TypeScript", "Node.js", "Redis"],
+    image: "/real-time-messaging-interface-with-chat-channels-a.jpg",
+  },
+  {
+    year: "2022",
+    role: "Software Engineer",
+    company: "Microsoft",
+    description:
+      "Developed cloud-native applications and microservices architecture.",
+    tech: ["C#", "Azure", "Docker"],
+    image: "/cloud-architecture-dashboard-with-microservices-an.jpg",
+  },
+  {
+    year: "2020",
+    role: "Full Stack Developer",
+    company: "Hootsuite",
+    description:
+      "Created social media management tools and analytics dashboards.",
+    tech: ["Vue.js", "Python", "PostgreSQL"],
+    image: "/social-media-analytics-dashboard-with-charts-and-s.jpg",
+  },
+  {
+    year: "2019",
+    role: "Frontend Developer",
+    company: "Airbnb",
+    description:
+      "Developed user interface components and booking flow optimizations.",
+    tech: ["React", "JavaScript", "CSS"],
+    image: "/airbnb-booking-interface.jpg",
+  },
+  {
+    year: "2018",
+    role: "Junior Developer",
+    company: "Spotify",
+    description:
+      "Built music streaming features and playlist management tools.",
+    tech: ["Angular", "Node.js", "MongoDB"],
+    image: "/music-streaming-interface.jpg",
+  },
+];
+
+const thoughts = [
+  // {
+  //   title: "The Future of Web Development",
+  //   excerpt:
+  //     "Exploring how AI and automation are reshaping the way we build for the web.",
+  //   date: "Dec 2024",
+  //   readTime: "5 min",
+  // },
+] as any[];
+
+const skills = [".NET Core", "Vue", "PostgreSQL", "AWS"];
+const socials = [
+  { name: "GitHub", handle: "@rodgons", icon: Github, url: "https://github.com/rodgons" },
+  { name: "LinkedIn", handle: "rodgons", icon: Linkedin, url: "https://www.linkedin.com/in/rodgons" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <div class="min-h-screen bg-background text-foreground relative" id="app">
+    <nav class="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
+      <div class="flex flex-col gap-4">
+        {
+          ["intro", "work", "thoughts"].map((section) => (
+            <button
+              data-section={section}
+              class="nav-dot w-2 h-8 rounded-full transition-all duration-500 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+              aria-label={`Navigate to ${section}`}
+            />
+          ))
+        }
+      </div>
+    </nav>
+
+    <div
+      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-20 transition-all duration-1000 scroll-indicator opacity-100 translate-y-0"
+    >
+      <div class="flex flex-col items-center gap-2 text-muted-foreground">
+        <div class="text-xs font-mono tracking-wider">SCROLL</div>
+        <div class="animate-bounce">
+          <svg
+            class="w-4 h-4 animate-pulse"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 14l-7 7m0 0l-7-7m0 0l7-7m-7 7l7-7"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
+      <header
+        id="intro"
+        class="min-h-screen flex items-center section"
+      >
+        <div class="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
+          <div class="lg:col-span-3 space-y-6 sm:space-y-8">
+            <div class="space-y-3 sm:space-y-2">
+              <div
+                class="text-sm text-muted-foreground font-mono tracking-wider"
+              >
+              PORTFOLIO / { (new Date()).getFullYear() }
+              </div>
+              <h1
+                class="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight"
+              >
+                Rodrigo
+                <br />
+                <span class="text-muted-foreground">Silva</span>
+              </h1>
+            </div>
+
+            <div class="space-y-6 max-w-md">
+              <p
+                class="text-lg sm:text-xl text-muted-foreground leading-relaxed"
+              >
+                Fullstack Engineer building scalable web applications at the
+                intersection of
+                <span class="text-foreground"> frontend innovation</span>,
+                <span class="text-foreground"> backend architecture</span>, and
+                <span class="text-foreground"> user experience</span>.
+              </p>
+
+              <div
+                class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-muted-foreground"
+              >
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse">
+                  </div>
+                  Available for work
+                </div>
+                <div>Vancouver, Canada</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="lg:col-span-2 flex flex-col justify-end space-y-6 sm:space-y-8 mt-8 lg:mt-0"
+          >
+            <div class="space-y-4">
+              <div class="text-sm text-muted-foreground font-mono">
+                SOCIALS
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {
+                  socials.map(({icon: Component, ...social}) => (
+                    <a
+                      href={social.url}
+                      class="group p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+                    >
+                      <div class="space-y-2">
+                        <div class="flex gap-2">
+                          <Component />
+                          <div class="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                            {social.name}
+                          </div>
+                        </div>
+                        <div class="text-sm text-muted-foreground">
+                          {social.handle}
+                        </div>
+                      </div>
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="text-sm text-muted-foreground font-mono">FOCUS</div>
+              <div class="flex flex-wrap gap-2">
+                {
+                  skills.map((skill) => (
+                    <span class="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300">
+                      {skill}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section id="work" class="min-h-screen py-20 sm:py-32 section">
+        <div class="space-y-12 sm:space-y-16">
+          <div
+            class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
+          >
+            <h2 class="text-3xl sm:text-4xl font-light">My Career So Far</h2>
+            <div class="text-sm text-muted-foreground font-mono">
+              2018 – 2025
+            </div>
+          </div>
+
+          <div class="space-y-8 sm:space-y-12 work-container">
+            {
+              workExperience.slice(0, 4).map((job, index) => (
+                <div class="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500">
+                  <div class="lg:col-span-2">
+                    <div class="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                      {job.year}
+                    </div>
+                  </div>
+
+                  <div class="lg:col-span-6 space-y-4">
+                    <div>
+                      <h3 class="text-lg sm:text-xl font-medium">{job.role}</h3>
+                      <div class="text-muted-foreground">{job.company}</div>
+                    </div>
+                    <p class="text-muted-foreground leading-relaxed max-w-lg">
+                      {job.description}
+                    </p>
+
+                    <div class="mt-4">
+                      <img
+                        src={job.image}
+                        alt={`${job.company} project screenshot`}
+                        class="w-full max-w-sm h-32 object-cover rounded-lg border border-border/50 group-hover:border-border transition-colors duration-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
+                    {job.tech.map((tech) => (
+                      <span class="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          {
+            workExperience.length > 4 && (
+              <div class="flex justify-center pt-8">
+                <button
+                  id="toggleWork"
+                  class="group flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+                >
+                  <span class="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                    See More ({workExperience.length - 4} more)
+                  </span>
+                  <svg
+                    class="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-all duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )
+          }
+        </div>
+      </section>
+
+      <section
+        id="thoughts"
+        class="min-h-screen py-20 sm:py-32 section"
+      >
+        <div class="space-y-12 sm:space-y-16">
+          <h2 class="text-3xl sm:text-4xl font-light">Recent Thoughts</h2>
+
+          <div class="grid gap-6 sm:gap-8 lg:grid-cols-2 thoughts-container">
+            {
+              thoughts.length ? thoughts.slice(0, 4).map((post, index) => (
+                <article class="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer">
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                      <span>{post.date}</span>
+                      <span>{post.readTime}</span>
+                    </div>
+
+                    <h3 class="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                      {post.title}
+                    </h3>
+
+                    <p class="text-muted-foreground leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                      <span>Read more</span>
+                      <svg
+                        class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </article>
+              ))
+              : <div class="text-muted-foreground">I have yet to have a thought...</div>
+            }
+          </div>
+
+          {
+            thoughts.length > 4 && (
+              <div class="flex justify-center pt-8">
+                <button
+                  id="toggleThoughts"
+                  class="group flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
+                >
+                  <span class="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                    See More ({thoughts.length - 4} more)
+                  </span>
+                  <svg
+                    class="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-all duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            )
+          }
+        </div>
+      </section>
+
+      <footer class="py-12 sm:py-16 border-t border-border">
+        <div
+          class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8"
+        >
+          <div class="space-y-2">
+            <div class="text-sm text-muted-foreground">
+              © { (new Date()).getFullYear() } Rodrigo Silva. All rights reserved.
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <button
+              id="themeToggle"
+              class="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300"
+              aria-label="Toggle theme"
+            >
+              <svg
+                id="lightIcon"
+                class="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300 hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707a1 1 0 001.414 0zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <svg
+                id="darkIcon"
+                class="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <div
+      class="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"
+    >
+    </div>
+  </div>
+</MainLayout>
+
+<script>
+  // Theme handling
+  const themeToggle = document.getElementById("themeToggle");
+  const lightIcon = document.getElementById("lightIcon");
+  const darkIcon = document.getElementById("darkIcon");
+
+  // Check if user has a theme preference in localStorage
+  const storedTheme = localStorage.getItem("theme");
+
+  // Set initial theme based on stored preference or default to dark
+  let isDark = storedTheme === null ? true : storedTheme === "dark";
+
+  function updateTheme(dark: boolean) {
+    isDark = dark;
+    document.documentElement.classList.toggle("dark", isDark);
+    lightIcon?.classList.toggle("hidden", isDark);
+    darkIcon?.classList.toggle("hidden", !isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }
+
+  // Update theme initially
+  updateTheme(isDark);
+
+  // Initialize with dark theme if no preference is set
+  if (localStorage.getItem("theme") === null) {
+    updateTheme(true);
+  }
+
+  // Handle manual theme toggle
+  themeToggle?.addEventListener("click", () => {
+    updateTheme(!isDark);
+  });
+
+  // Scroll handling
+  const sections = document.querySelectorAll(".section");
+  const navDots = document.querySelectorAll(".nav-dot");
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+  let showScrollIndicator = true;
+
+  // Handle active section for nav dots
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          navDots.forEach((dot) => {
+            if ((dot as HTMLElement).dataset.section === sectionId) {
+              dot.classList.add("bg-foreground");
+              dot.classList.remove("bg-muted-foreground/30");
+            } else {
+              dot.classList.remove("bg-foreground");
+              dot.classList.add("bg-muted-foreground/30");
+            }
+          });
+        }
+      });
+    },
+    { threshold: 0.3, rootMargin: "0px 0px -20% 0px" }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  // Handle scroll indicator
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100 && showScrollIndicator) {
+      showScrollIndicator = false;
+      scrollIndicator?.classList.add(
+        "opacity-0",
+        "translate-y-4",
+        "pointer-events-none"
+      );
+    }
+  });
+
+  // Navigation dots click handling
+  navDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const sectionId = (dot as HTMLElement).dataset.section;
+      if (sectionId) {
+        const section = document.getElementById(sectionId);
+        section?.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+</script>
+
+
