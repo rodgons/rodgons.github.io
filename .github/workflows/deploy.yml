@@ -29,6 +29,12 @@ jobs:
         run: pnpm install
       - name: Build site
         run: pnpm build
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
 
   deploy:
     needs: build
